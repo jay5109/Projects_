@@ -1,0 +1,46 @@
+openapi: 3.0.3
+info:
+  title: WMATA Accessibility API
+  description: JHU Intro Python Module 7 Assignment - WMATA Accessibility
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /incidents/{machine_type}:
+    get:
+      tags:
+      - Incidents
+      summary: Get a list of machine incidents by machine type
+      parameters:
+      - name: machine_type
+        in: path
+        description: Machine Type
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Request Successfully Completed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Machine"
+components:
+  schemas:
+    Machine:
+      type: object
+      properties:
+        StationCode:
+          type: string
+          example: A11
+        StationName:
+          type: string
+          example: Grosvenor-Strathmore
+        UnitName:
+          type: string
+          example: A11X01
+        UnitType:
+          type: string
+          example: ELEVATOR
